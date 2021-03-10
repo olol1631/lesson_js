@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?</title>
+</head>
+<body>
+    
+    <script>
+        var lastName = prompt('Фамилия?', 'Иванов');
+        var firstName = prompt('Имя?', 'Иван');
+        var patronymic = prompt('Отчество?', 'Иванович');
+        var masc = confirm('Ваш пол мужской?');
+        var age = prompt('Возраст?', 65);
+
+        //Возраст в днях
+        var days = age*365;
+        //Возраст через 5 лет
+        var age5 = parseInt(age)+5;
+
+        //Пол
+        masc ? sex = 'мужской' : sex = 'женский'  
+
+        //Пенсия
+        var pens;
+        masc ? (age>63 ? pens = 'да' : sex = pens = 'нет') : (age>58 ? pens = 'да' : sex = pens = 'нет');
+
+        alert(`ваше ФИО: ${lastName + ' ' + firstName + ' ' + patronymic} 
+                    ваш возраст в годах: ${age}
+                    ваш возраст в днях: ${days}
+                    через 5 лет вам будет: ${age5}
+                    ваш пол: ${sex}
+                    вы на пенсии: ${pens}`
+        );
+        
+
+    </script>
+</body>
+</html>
