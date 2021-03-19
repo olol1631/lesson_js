@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COUNTRIES</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        *,*:before,*:after{
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        input{
+            display: block;
+            margin: 10px auto 0;
+            width: 300px;
+            text-align: center;
+            padding: 15px;
+            text-transform: uppercase;
+            background-color: rgb(242, 74, 74);
+            border: none;
+            border-radius: 5px;
+            transition: all .3s;
+            color: #fff;
+            outline: none;
+        }
+        input:hover{
+            background-color: rgb(255, 111, 111);
+        }
+    </style>
+</head>
+<body>
+    <input type="submit" value="ввод информации о стране" onclick="addCountryX()">
+    <br>
+    <input type="submit" value="получение информации о стране" onclick="getCountryInfoX()">
+    <br>
+    <input type="submit" value="перечень всех стран" onclick="listCountrysX()">
+    <br>
+    <input type="submit" value="удаление информации о стране" onclick="deleteCountryX()">
+    
+
+    <script>
+    function addCountryX(){
+        let country = prompt('Страна?')
+        let capital = prompt('Столица?')
+        addCountry(country,capital)
+    }
+    function getCountryInfoX(){
+        let info = prompt('Информация о стране')
+        alert(getCountryInfo(info))        
+    }
+    function listCountrysX(){
+        console.log('список стран:'+ listCountrys())
+        alert('список стран:'+ listCountrys())        
+    }
+    function deleteCountryX(){
+        let country = prompt('Страна?')
+        deleteCountry(country)
+    }
+
+        
+    //Для работы с хэшем стран следует использовать функции, которые на занятии были вынесены в скриптовый файл countries.js, не изменяя их (считать их библиотечными, готовыми). То есть, в кнопках по onclick следует вызывать другие функции, которые задают пользователю необходимые вопросы и затем уже вызывают библиотечные функции.
+    var countrysH={};
+    function addCountry(countryName,capitalName) {
+        countrysH[countryName]=capitalName;
+    }
+
+    function deleteCountry(countryName) {
+        delete countrysH[countryName];
+    }
+
+    function getCountryInfo(countryName) {
+        if ( countryName in countrysH )
+            return 'страна: ' + countryName + ' столица: ' + countrysH[countryName] ;
+        else
+            return 'нет информации о стране ' + countryName + '!' ;
+    }
+
+    function listCountrys() {
+        var res="";
+        for ( var CN in countrysH )
+            res+='\n'+getCountryInfo(CN);
+        return res;
+    }
+
+    addCountry('Германия','Берлин');
+    addCountry('Венгрия','Будапешт');
+    addCountry('Франция','Париж');
+    addCountry('Чехия','Прага');
+
+    // console.log( "список стран:" + listCountrys() );
+
+    </script>
+</body>
+</html>
